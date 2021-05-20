@@ -1,4 +1,1 @@
-  Divisao de no -  pagina 0.
-  Chave 3 promovida.
-Execucao de operacao de INSERCAO de 1233, Caça, Rock.
-  Chave 1233 inserida com sucesso.
+

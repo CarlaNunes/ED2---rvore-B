@@ -17,22 +17,22 @@ int main(void){
     int escolha = 0,
         i;
     
-    char *menu[] = {"Criar indice", "Inserir", "Pesquisar", "Remover elemento", "Mostrar arvore-B", "Fechar"};
-    int (*func[])(FILE *fd, FILE *fi, FILE *fl) = {inserir_elemento,pesquisar_elemento,remover_elemento,mostrar_btree};
+    char *menu[] = {"Criar indice", "Inserir", "Pesquisar", "Fechar"};
+    int (*func[])(FILE *fd, FILE *fi, FILE *fl) = {inserir_elemento,pesquisar_elemento};
     
     while(1){
         printf("Escolha uma opcao:\n");
         
-        for(i = 0; i < MENU_SIZE; i++)
+        for(i = 0; i < 4; i++)
             printf("%d - %s\n", i+1, menu[i]);
         
         printf("> ");
         scanf("%d",&escolha);
         
-        if(escolha > MENU_SIZE || escolha < 1){
+        if(escolha > 4 || escolha < 1){
             printf("\nOpcao Invalida\n");
         }
-        else if(escolha == MENU_SIZE){
+        else if(escolha == 4){
             break;
         }         
             

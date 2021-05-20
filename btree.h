@@ -1,7 +1,11 @@
 #ifndef _btree_h
 #define _btree_h
 
-#define ORDER 5
+#define ORDER 5 //Capacidade = ordem - 1
+//Fazer testes para:
+// t = 2, 50, 100, 150, 200, 250, 300...
+//Sendo: 2t-1
+//Ou seja Ordens testadas: 3, 99,199,299,499, 599
 #define N_KEYS ORDER-1
 
 typedef struct{

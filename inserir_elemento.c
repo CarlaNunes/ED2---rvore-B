@@ -22,40 +22,27 @@ int inserir_elemento (FILE *fd, FILE *fi, FILE *fl){
     tHeader header;
     
     /*************LEITURA DOS DADOS******************/
-    printf("ID: ");
-    scanf("%d", &novo_registro.id);
+    printf("Elemento: ");
+    scanf("%d", &novo_registro.elemento);
     
     //Limpar buffer de entrada
     while ((aux_clear = getchar()) != '\n' && aux_clear != EOF);
     
-    printf("Titulo: ");
-    //scanf("%s",novo_registro.titulo);
-    fgets(novo_registro.titulo,30,stdin);
     
     //Limpar buffer de entrada
     //while ((aux_clear = getchar()) != '\n' && aux_clear != EOF);
     
-    assert(printf("Titulo lido: %s", novo_registro.titulo));
-    
-    printf("Genero: ");
-    //scanf("%s",novo_registro.genero);
-    fgets(novo_registro.genero,20,stdin);
-    
-    //Limpar buffer de entrada
-    //while ((aux_clear = getchar()) != '\n' && aux_clear != EOF);
     
 
     /*************COMPOSICAO DO REGISTRO******************/
-    sprintf(buffer, "%d|%s|%s|", novo_registro.id, novo_registro.titulo, novo_registro.genero);
+    sprintf(buffer, "%d|%s|%s|", novo_registro.elemento);
     buffer_size = strlen(buffer);
     assert(buffer != NULL);
     
-    strtok(novo_registro.titulo,"\n");
-    strtok(novo_registro.genero,"\n");
     
     /*************OPERAÇÃO DE INSERÇÃO******************/
     //Registro de operação no arquivo de Log
-    fprintf (fl, "Execucao de operacao de INSERCAO de %d, %s, %s.\n",novo_registro.id, novo_registro.titulo, novo_registro.genero);
+    fprintf (fl, "Execucao de operacao de INSERCAO de %d, %s, %s.\n",novo_registro.elemento);
     
     header = read_header(fi);
     //Primeira inserção
@@ -65,7 +52,7 @@ int inserir_elemento (FILE *fd, FILE *fi, FILE *fl){
         //Verifica se não há duplicação da chave
         for (i = 0; i <= header.pages; ++i)
         {
-            elemento_encontrado = search_btree(fi, i, novo_registro.id, &retorno_RRN, &retorno_posicao);
+            elemento_encontrado = search_btree(fi, i, novo_registro.elemento, &retorno_RRN, &retorno_posicao);
             if (elemento_encontrado)
                 break;
         }
@@ -74,12 +61,12 @@ int inserir_elemento (FILE *fd, FILE *fi, FILE *fl){
     assert(printf("ENCONTRADO:%d\n", elemento_encontrado));
 
     if (elemento_encontrado > 0){
-        fprintf (fl, "  Chave %d duplicada.\n",novo_registro.id);
+        fprintf (fl, "  Chave %d duplicada.\n",novo_registro.elemento);
     }
     else if(elemento_encontrado == 0){
         /*************ESCRITA NO ARQUIVO DE DADOS******************/
         fseek(fd,0,SEEK_END);
-        insert_key.key = novo_registro.id;
+        insert_key.key = novo_registro.elemento;
         insert_key.offset = ftell(fd);
     
         assert(printf("Inserindo:%d\nOffset:%ld\n", insert_key.key, insert_key.offset));    
@@ -94,7 +81,7 @@ int inserir_elemento (FILE *fd, FILE *fi, FILE *fl){
         error = insert_btree(fi,fl, get_root_RRN(fi), insert_key, &promo_key, &propo_r_child);
         
         if(error == 0){
-            fprintf (fl, "  Chave %d inserida com sucesso.\n",novo_registro.id);    
+            fprintf (fl, "  Chave %d inserida com sucesso.\n",novo_registro.elemento);    
             assert(printf("Atualiza indice\n"));
             set_header_update(fi,1);        //Indice atualizado
         }    

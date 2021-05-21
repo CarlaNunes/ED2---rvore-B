@@ -23,14 +23,15 @@ int inserir_elemento (FILE *fd, FILE *fi, FILE *fl){
     
     /*************LEITURA DOS DADOS******************/
     printf("Elemento: ");
-    scanf("%d", &novo_registro.elemento);
+    for(int j = 0; j < 1000; j++){
+        novo_registro.elemento = rand() % 500;
+        printf("\n %d",novo_registro.elemento);
+    }
+    //scanf("%d", &novo_registro.elemento);
     
     //Limpar buffer de entrada
     while ((aux_clear = getchar()) != '\n' && aux_clear != EOF);
     
-    
-    //Limpar buffer de entrada
-    //while ((aux_clear = getchar()) != '\n' && aux_clear != EOF);
     
     
 

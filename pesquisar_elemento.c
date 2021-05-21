@@ -22,7 +22,7 @@ int pesquisar_elemento (FILE *fd, FILE *fi, FILE *fl){
         
     header = read_header(fi);
     
-    printf("Digite o ID a ser buscado: ");
+    printf("Digite o valor a ser buscado: ");
     scanf("%d", &chave_busca);
     
     header = read_header(fi);
@@ -51,16 +51,7 @@ int pesquisar_elemento (FILE *fd, FILE *fi, FILE *fl){
         fread(&buffer_size, sizeof(buffer_size), 1, fd);    //Leitura do tamanho do registro
         fread(buffer, buffer_size, 1, fd);                 //Leitura do registro
         
-        puts("");
-        token = strtok(buffer, delimiter);
-        printf("ID: %s\n", token);
-    
-        token = strtok(NULL, delimiter);
-        printf("Titulo: %s", token);
-        
-        token = strtok(NULL, delimiter);
-        printf("Genero: %s", token);
-        puts("");
+       printf("\n Valor encontrado!");
     }
     //Elemento não encontrado
     else{

@@ -42,7 +42,7 @@ int main(void){
         else if(escolha == 1){
             criar_indice(fd, &fi, fl);
             t = clock() - t; //tempo final - tempo inicial
-            printf("\n Tempo de execucao: %lf", ((double)t)/((CLOCKS_PER_SEC/1000))); //conversão para doubl
+            printf("\n Tempo de execucao: %lf \n", ((double)t)/((CLOCKS_PER_SEC/1000))); //conversão para doubl
   
         }
         else{
